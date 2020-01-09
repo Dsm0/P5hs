@@ -67,7 +67,7 @@ library
     , mtl >= 2.2
     , containers
     , matrix
-    , tidal >= 1.4.4
+    , tidal >= 1.4.7
     , split
     , vivid
     , turtle
