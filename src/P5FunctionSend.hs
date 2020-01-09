@@ -25,9 +25,21 @@ makeDraw stream newFunction = changeFunc stream "draw" newFunction
 
 makeLoad stream newFunction = changeFunc stream "load" newFunction
 
-makeImage stream imageURL = do
+
+makeImageUrlLoader stream imageURL = do
   changeFunc' stream list
   return $ makeJSVar (removePunc imageURL)
     where varName = removePunc imageURL
           imageURLVar = makeJSVar imageURL
           list = [("imageName",VS varName),("imageURL",VS imageURL)]
+          -- the imageName is just the imageURL without any punctuation marks
+          -- this was done so that you could refer to the image with only one variable
+          --    the addition of a name is only for having a key:data pair that can be stored in an object
+
+
+-- makeShader stream (shaderName, shaderVert, shaderFrag) = do
+--   changeFunc' stream list
+--   return $ makeJSVar shaderName
+--     where varName = removePunc imageURL
+--           imageURLVar = makeJSVar imageURL
+--           list = [("shaderName",VS shaderName),("shaderVert",VS shaderVert),("shaderFrag",shaderFrag)]
