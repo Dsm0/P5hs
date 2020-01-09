@@ -40,6 +40,7 @@ library
       Modules.P5Text
       Modules.P5Image
       Modules.P5Attributes
+      Modules.Hydra
 
       HigherOrder.P5Bool
       HigherOrder.P5Loops
@@ -67,7 +68,7 @@ library
     , mtl >= 2.2
     , containers
     , matrix
-    , tidal >= 1.4.4
+    , tidal >= 1.4.6
     , split
     , vivid
     , turtle
