@@ -40,6 +40,7 @@ library
       Modules.P5Text
       Modules.P5Image
       Modules.P5Attributes
+      Modules.Hydra
 
       HigherOrder.P5Bool
       HigherOrder.P5Loops

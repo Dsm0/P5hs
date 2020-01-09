@@ -6,7 +6,7 @@ import Sound.Tidal.Context
 import qualified Data.Map as Map_
 
 changeFunc' stream list = sendFunc' list
-  where toEvent' ws we ps pe v = Event (Context []) (Just $ Sound.Tidal.Context.Arc ws we) (Sound.Tidal.Context.Arc ps pe) v
+  where toEvent' ws we ps pe v = Event (Sound.Tidal.Context.Context []) (Just $ Sound.Tidal.Context.Arc ws we) (Sound.Tidal.Context.Arc ps pe) v
           -- where [ws',we',ps',pe'] = map toRational [ws,we,ps,pe]
         makeFakeMap list_ = Map_.fromList list_
         makeFuncHelp :: [(JavaScript,Value)] -> ControlPattern
