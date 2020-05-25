@@ -3,8 +3,6 @@ module Modules.P5Transform where
 import P5Expressions
 import P5Render
 
-import Data.Matrix
-
 data Transform a = ApplyMatrix ([[ArgEx a]])
                  | ResetMatrix
                  | RotateX (ArgEx a)

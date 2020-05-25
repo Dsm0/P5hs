@@ -9,7 +9,6 @@ module Lib where
 import Data.List
 import Text.Printf
 import Data.Typeable
-import Data.List.Split
 
 import Modules.P5Transform
 import Modules.P5Shapes
@@ -23,23 +22,18 @@ import Modules.P5Image
 import Modules.P5Attributes
 
 import P5Enviornment
-import P5FunctionSend
 import P5Expressions
 import P5Render
 import P5JSRenderFuncs
 import P5Funcs
 import P5Audio
-import qualified Data.Map as Map_
 import Exported.ExportedFunctions
 import Exported.ExportedVariables
 import ListWriter
-import Turtle
 
 import HigherOrder.P5Bool
 import HigherOrder.P5Loops
 
 import UsefulFuncs
-
-import Sound.Tidal.Context
 
 import Control.Monad.Writer (Writer(..), runWriter, tell, MonadWriter(..))
