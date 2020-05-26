@@ -58,7 +58,7 @@ instance (Show a, Num a) => Num (ArgEx a) where
           newX = value argex
 
 instance (Fractional a , Real a, Show a) => Fractional (ArgEx a)  where
-  (/) argex0 argex1 = ArgEx (w / z) (jsMod f0 f1)
+  (/) argex0 argex1 = ArgEx (w / z) (jsDivide f0 f1)
     where (w,z) = (value argex0, value argex1)
           (f0,f1) = (varFunc argex0, varFunc argex1)
   recip argex = ArgEx (1 / w) (jsDivide "1" (bracket f0) )
