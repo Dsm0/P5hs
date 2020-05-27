@@ -7,19 +7,23 @@ import P5Render
 import ListWriter
 import qualified Data.Fixed
 import P5JSRenderFuncs
+import Prelude hiding ((>),(<),(==),(/=),(<=),(>=))
+import qualified Prelude as P
 
-(#==) :: (ArgEx a) -> (ArgEx a) -> P5BoolConstructor a
-(#==) argex0 argex1 = P5Eq argex0 argex1
-(#!=) :: (ArgEx a) -> (ArgEx a) -> P5BoolConstructor a
-(#!=) argex0 argex1 = P5NEq argex0 argex1
-(#>) :: (ArgEx a) -> (ArgEx a) -> P5BoolConstructor a
-(#>) argex0 argex1 = P5Gt argex0 argex1
-(#<) :: (ArgEx a) -> (ArgEx a) -> P5BoolConstructor a
-(#<) argex0 argex1 = P5Lt argex0 argex1
-(#>=) :: (ArgEx a) -> (ArgEx a) -> P5BoolConstructor a
-(#>=) argex0 argex1 = P5Gt argex0 argex1
-(#<=) :: (ArgEx a) -> (ArgEx a) -> P5BoolConstructor a
-(#<=) argex0 argex1 = P5Lt argex0 argex1
+-- the core boolean operators are overridden for the sake of quick composition + lack of confusion when writing functions that need to compile to JS
+-- if you want to evaluate a equality haskell-side, use P.==
+(==) :: (ArgEx a) -> (ArgEx a) -> P5BoolConstructor a
+(==) argex0 argex1 = P5Eq argex0 argex1
+(!=) :: (ArgEx a) -> (ArgEx a) -> P5BoolConstructor a
+(!=) argex0 argex1 = P5NEq argex0 argex1
+(>) :: (ArgEx a) -> (ArgEx a) -> P5BoolConstructor a
+(>) argex0 argex1 = P5Gt argex0 argex1
+(<) :: (ArgEx a) -> (ArgEx a) -> P5BoolConstructor a
+(<) argex0 argex1 = P5Lt argex0 argex1
+(>=) :: (ArgEx a) -> (ArgEx a) -> P5BoolConstructor a
+(>=) argex0 argex1 = P5Gt argex0 argex1
+(<=) :: (ArgEx a) -> (ArgEx a) -> P5BoolConstructor a
+(<=) argex0 argex1 = P5Lt argex0 argex1
 
 data P5BoolConstructor a =
     P5Eq (ArgEx a) (ArgEx a)
@@ -45,7 +49,9 @@ instance (Renderer a) => Renderer (P5BoolConstructor a) where
     where (f0,f1) = (varFunc argex0, varFunc argex1)
 
 evalP5Bool :: (Eq a, Ord a) => P5BoolConstructor a -> Bool
-evalP5Bool (P5Eq a b) = a == b
-evalP5Bool (P5NEq a b) = a /= b
-evalP5Bool (P5Gt a b) = a > b
-evalP5Bool (P5Lt a b) = a < b
+evalP5Bool (P5Eq a b) = (P.==) a b
+evalP5Bool (P5NEq a b) = (P./=) a b
+evalP5Bool (P5Gt a b) = (P.>) a b
+evalP5Bool (P5Lt a b) = (P.<) a b
+evalP5Bool (P5LtEq a b) = (P.>=) a b
+evalP5Bool (P5GtEq a b) = (P.<=) a b

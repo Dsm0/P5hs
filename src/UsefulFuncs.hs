@@ -5,13 +5,15 @@ import P5Render
 import HigherOrder.P5Bool
 import Exported.ExportedFunctions
 import Exported.ExportedVariables
+import Prelude hiding ((>),(<),(==),(/=),(<=),(>=))
+import qualified Prelude as P
 
 translateX x = translate x 0 0
 translateY y = translate 0 y 0
 translateZ z = translate 0 0 z
 osc = sin frameCount
 lfo' x = sin ((frameCount) * (makeValue (0.0001 * x)))
-inrange i' maxi = foriInRange 0 (i' #<= maxi) 1
+inrange i' maxi = foriInRange 0 (i' <= maxi) 1
 (//) :: Integral a => a -> a -> a
 (//) = div
 js string = makeJSVar' string

@@ -115,5 +115,3 @@ main = do
   prettyRender t1_text
 
 
-
-
