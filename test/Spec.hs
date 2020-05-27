@@ -1,7 +1,8 @@
 {-# LANGUAGE ExtendedDefaultRules #-}
 
 import P5hs
-
+import Prelude hiding ((==),(/==),(>),(<),(>=),(<=))
+import qualified Prelude as P
 
 t1_2d = listEnumToFunc [bbbbox (x*100) | x <- map makeValue [0..5]]
     where spd = (makeTidalParam "cps")
@@ -53,7 +54,7 @@ t1_3d = do
 
 t1_loop = do
   translate (-1000) (-500) 0
-  foriInRange 0 (i #< (mod (frameCount // (mod (frameCount // 800) 8)) 40)) 1 $ do
+  foriInRange 0 (i < (mod (frameCount // (mod (frameCount // 800) 8)) 40)) 1 $ do
     rect 200 20 (20*i) (20*(mod i 40))
 
 
