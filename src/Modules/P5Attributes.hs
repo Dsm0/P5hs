@@ -17,10 +17,10 @@ data Attribute a
 instance (Renderer a) => Renderer (Attribute a) where
   render (EllipseMode x) = "ellipseMode(" ++ arg ++ ")"
     where arg = render x
-  render (NoSmooth) = "noSmooth()"
+  render NoSmooth = "noSmooth()"
   render (RectMode x) = "rectMode(" ++ arg ++ ")"
     where arg = render x
-  render (Smooth) = "smooth()"
+  render Smooth = "smooth()"
   render (StrokeCap x) = "strokeCap(" ++ arg ++ ")"
     where arg = render x
   render (StrokeJoin x) = "strokeJoin(" ++ arg ++ ")"

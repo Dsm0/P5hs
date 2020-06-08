@@ -32,15 +32,16 @@ instance (Eq a) => Eq (ArgEx a) where
     where (w,z) = (value argex0, value argex1)
           (xf,yf) = (varFunc argex0, varFunc argex1)
 
-rationalToFractional x = (map rtf) x
+rationalToFractional = map rtf
   where rtf '%' = '/'
         rtf c = c
 
 instance (Show a) => Show (ArgEx a) where
-  show argex = (varFunc) argex
+  show = varFunc
+  -- show argex = (varFunc) argex
 
 instance (Show a, Num a) => Num (ArgEx a) where
-  negate argex = ArgEx newX (jsMultiply "-1" (f0))
+  negate argex = ArgEx newX (jsMultiply "-1" f0)
     where f0 = varFunc argex
           newX = negate $ value argex
   (+) argex0 argex1 = ArgEx (w + z) (jsAdd f0 f1)
@@ -53,7 +54,7 @@ instance (Show a, Num a) => Num (ArgEx a) where
   abs argex = ArgEx newX (jsAbs f0)
     where f0 = varFunc argex
           newX = abs $ value argex
-  signum argex = ArgEx newX (jsSign (f0))
+  signum argex = ArgEx newX (jsSign f0)
     where f0 = varFunc argex
           newX = value argex
 
@@ -68,9 +69,9 @@ instance (Fractional a , Real a, Show a) => Fractional (ArgEx a)  where
 
 
 instance (Show a, Enum a) => Enum (ArgEx a) where
-  succ (ArgEx value str) = ArgEx (newVal) (show newVal)
+  succ (ArgEx value str) = ArgEx newVal (show newVal)
     where newVal = succ value
-  pred (ArgEx value str) = ArgEx (newVal) (show newVal)
+  pred (ArgEx value str) = ArgEx newVal (show newVal)
     where newVal = pred value
   fromEnum (ArgEx x str) = fromEnum x
   toEnum x = ArgEx (toEnum x) (show x)
@@ -91,7 +92,6 @@ instance (Num a, Real a, Floating a, Fractional a, Show a) => Floating (ArgEx a)
   logBase argex0 argex1 = ArgEx ((log w) / log z) (jsDivide (jsLog f0) (jsLog f1))
     where (w,z) = (value argex0, value argex1)
           (f0,f1) = (varFunc argex0, varFunc argex1)
-
   sin argex = ArgEx (sin w) (jsSine f0)
     where w = value argex
           f0 = varFunc argex
@@ -128,6 +128,7 @@ instance (Num a, Real a, Floating a, Fractional a, Show a) => Floating (ArgEx a)
   atanh argex = ArgEx (atanh w) (jsATanh f0)
     where w = value argex
           f0 = varFunc argex
+  pi = ArgEx 3.1415926585 jsPi
 
 
 -- WARNING WARNING WARNING WARNING
@@ -213,7 +214,7 @@ ceiling' argex = ArgEx (ceiling w) (jsCeil f0)
 
 instance (Integral a, RealFrac a, Show a) => RealFrac (ArgEx a) where
   properFraction argex = (pf1, a2)
-    where a2 = ArgEx (pf2) (jsFrac f0)
+    where a2 = ArgEx pf2 (jsFrac f0)
           (pf1,pf2) = properFraction w
           w = value argex
           f0 = varFunc argex

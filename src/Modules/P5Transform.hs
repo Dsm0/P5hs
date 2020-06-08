@@ -3,7 +3,7 @@ module Modules.P5Transform where
 import P5Expressions
 import P5Render
 
-data Transform a = ApplyMatrix ([[ArgEx a]])
+data Transform a = ApplyMatrix [[ArgEx a]]
                  | ResetMatrix
                  | RotateX (ArgEx a)
                  | RotateY (ArgEx a)

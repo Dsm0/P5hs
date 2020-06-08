@@ -1,4 +1,5 @@
-{-# LANGUAGE TypeSynonymInstances, FlexibleInstances, FlexibleContexts, InstanceSigs #-}
+{-# LANGUAGE FlexibleInstances, FlexibleContexts, InstanceSigs #-}
+-- {-# LANGUAGE TypeSynonymInstances #-}
 {-# LANGUAGE ExistentialQuantification, UndecidableInstances #-}
 module P5Render where
 
@@ -16,7 +17,7 @@ class Renderer a where
 
 data RenderAble = forall t. (Renderer t, Show t) => RenderAble t
 
-instance Show (RenderAble) where
+instance Show RenderAble where
   show (RenderAble a) = show a
 
 instance Eq (RenderAble) where

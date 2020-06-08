@@ -13,21 +13,24 @@ data Setting a
   | NoStroke
   | Erase (ArgEx a) (ArgEx a)
   | NoErase
+  | BlendMode (ArgEx a)
   deriving(Eq,Show)
 
 
 instance (Show a, Renderer a) => Renderer (Setting a) where
   render (Background x y z) = "background(" ++ rgb ++ ");"
     where rgb = betweenBrackets [x,y,z]
-  render (Clear) = "clear();"
+  render Clear = "clear();"
   render (ColorMode x y) = "colorMode(" ++ mode ++ ");"
     where mode = betweenBrackets [x,y]
   render (Fill x y z) = "fill(" ++ rgb ++ ");"
     where rgb = betweenBrackets [x,y,z]
-  render (NoFill) = "noFill();"
+  render NoFill = "noFill();"
   render (Stroke x y z) = "stroke(" ++ rgb ++ ");"
     where rgb = betweenBrackets [x,y,z]
-  render (NoStroke) = "noStroke();"
+  render NoStroke = "noStroke();"
   render (Erase x y) = "erase(" ++ xy ++ ");"
     where xy = betweenBrackets [x,y]
-  render (NoErase) = "noErase();"
+  render NoErase = "noErase();"
+  render (BlendMode x) = "BlendMode(" ++ arg ++ ")"
+    where arg = render x

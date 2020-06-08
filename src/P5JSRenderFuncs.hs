@@ -55,3 +55,5 @@ jsTanh x = bracket ("Math.tanh" ++ bracket x)
 jsASineh x = bracket ("Math.asinh" ++ bracket x)
 jsACosineh x = bracket ("Math.acosh" ++ bracket x)
 jsATanh x = bracket ("Math.atanh" ++ bracket x)
+
+jsPi = bracket "Math.pi"
