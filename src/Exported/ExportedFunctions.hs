@@ -84,7 +84,6 @@ rotateY :: (Show a, Num a, Renderer a) => (ArgEx a) -> ListM RenderAble
 rotateY x = pack (RotateY x)
 rotateZ :: (Show a, Num a, Renderer a) => (ArgEx a) -> ListM RenderAble
 rotateZ x = pack (RotateZ x)
-rotate x = rotateX x
 objScale :: (Show a, Num a, Renderer a) => (ArgEx a) -> (ArgEx a) -> (ArgEx a) -> ListM RenderAble
 objScale x y z = pack (Scale x y z)
 shearX :: (Show a, Num a, Renderer a) => (ArgEx a) -> ListM RenderAble
@@ -173,6 +172,7 @@ initFFT = pack (InitFFT :: AudioAttributes Integer)
 -- this definition for freqBin is a bit janky because I wanted audio related functions
 -- to be in their own type, instead of just a function that composes something of type (ArgEx a)
 freqBin x = makeJSVar' (render $ FreqBin x)
+p5gain = makeJSVar' (render (Gain :: AudioAttributes Int))
 
 while' :: (Show a, Num a, Renderer a) => (P5BoolConstructor a) -> (ListM RenderAble) -> ListM RenderAble
 -- (DoWhile x y :: P5Loop (P5BoolConstructor ArgExD))
