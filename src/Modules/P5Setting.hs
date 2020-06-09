@@ -32,5 +32,42 @@ instance (Show a, Renderer a) => Renderer (Setting a) where
   render (Erase x y) = "erase(" ++ xy ++ ");"
     where xy = betweenBrackets [x,y]
   render NoErase = "noErase();"
-  render (BlendMode x) = "BlendMode(" ++ arg ++ ")"
+  render (BlendMode x) = "blendMode(" ++ arg ++ ");"
     where arg = render x
+
+data BlendMode
+  =  BLEND 
+  |  ADD
+  |  DARKEST
+  |  LIGHTEST
+  |  DIFFERENCE
+  |  EXCLUSION
+  |  MULTIPLY
+  |  SCREEN
+  |  REPLACE
+  |  REMOVE
+  |  OVERLAY
+  |  HARD_LIGHT
+  |  SOFT_LIGHT
+  |  DODGE
+  |  BURN 
+  |  SUBTRACT 
+
+instance (Renderer BlendMode) where
+  render BLEND = "BLEND"
+  render ADD = "ADD"
+  render DARKEST = "DARKEST"
+  render LIGHTEST = "LIGHTEST"
+  render DIFFERENCE = "DIFFERENCE"
+  render EXCLUSION = "EXCLUSION"
+  render MULTIPLY = "MULTIPLY"
+  render SCREEN = "SCREEN"
+  render REPLACE = "REPLACE"
+  render REMOVE = "REMOVE"
+  render OVERLAY = "OVERLAY" -- 2D
+  render HARD_LIGHT = "HARD_LIGHT" -- 2D
+  render SOFT_LIGHT = "SOFT_LIGHT" -- 2D
+  render DODGE = "DODGE" -- 2D 
+  render BURN = "BURN" -- 2D
+  render SUBTRACT = "SUBTRACT" -- 3D
+

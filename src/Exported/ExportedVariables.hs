@@ -82,6 +82,7 @@ p5gain = makeJSVar' $ render (Gain :: AudioAttributes Integer)
 -- initFFT:: ArgEx Integer
 -- initFFT           = makeJSVar InitFFT
 
+
 -- p5gain :: ArgEx Integer
 
 
@@ -108,3 +109,4 @@ begin' = makeTidalParam "begin" :: Num a => ArgEx a
 
 -- you can defined your own with
 -- tP param' = makeTidalParam "param"
+
