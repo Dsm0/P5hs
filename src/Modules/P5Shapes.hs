@@ -1,4 +1,4 @@
-{-# LANGUAGE FlexibleContexts, FlexibleInstances, TemplateHaskell, ScopedTypeVariables #-}
+{-# LANGUAGE FlexibleContexts, FlexibleInstances, ScopedTypeVariables #-}
 
 module Modules.P5Shapes where
 
@@ -21,7 +21,7 @@ data Shape a
 newtype Drawing a = Drawing [Shape a]
   deriving(Eq,Show)
 
-drawing a = Drawing a
+drawing = Drawing
 
 instance (Show a, Renderer a) => Renderer (Shape a) where
   render (Point x y) = "point(" ++ args ++ ");"
