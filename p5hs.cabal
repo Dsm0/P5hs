@@ -46,7 +46,6 @@ library
       HigherOrder.P5Loops
 
       P5Enviornment
-      P5FunctionSend
       P5Expressions
       P5Render
       P5JSRenderFuncs
