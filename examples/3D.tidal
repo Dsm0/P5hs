@@ -1,5 +1,3 @@
-d1 $ "bd"
-
 let boxtrain = do {
       let fcConstant = ((frameCount) / 5)
           spd = (sin (fcConstant*0.00016))
@@ -31,12 +29,3 @@ in draw $ do
   rotateX (20 + (makeTidalParam "begin")*40)
   -- rotateZ (200)
   listEnumToFunc (take (20) $ cycle [b2])
-
-:i frameCount
-
-
-d1 $ "bd*8"
-
-
-draw $ do
-  box 20 20 20 (200*(frameCount)) blank

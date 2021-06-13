@@ -6,8 +6,8 @@ import P5Render
 data Structure
   = Push
   | Pop
-  deriving(Eq,Show)
+  deriving (Eq, Show)
 
 instance Renderer Structure where
-  render Push             =    "push()"
-  render Pop              =    "pop()"
+  render Push = "push()"
+  render Pop = "pop()"

@@ -1,6 +1,3 @@
-:script scripts/BootTidal.hs
-
-
 let bdOnly = makeTidalParamFor "s" "bd" "gain"
     begin' = makeTidalParam "begin"
     end' = makeTidalParam "end"
