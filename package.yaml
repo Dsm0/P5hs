@@ -25,17 +25,6 @@ dependencies:
 library:
   source-dirs: src
 
-executables:
-  p5hs-exe:
-    main:                Main.hs
-    source-dirs:         app
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    dependencies:
-    - p5hs
-
 tests:
   p5hs-test:
     main:                Spec.hs
